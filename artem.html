@@ -79,6 +79,7 @@
         .balloon {
             font-size: 50px;
             animation: float 3s ease-in-out infinite;
+            display: inline-block;
         }
         
         .balloon:nth-child(1) { animation-delay: 0s; }
@@ -388,11 +389,11 @@
         <h1>🍰 С ДНЁМ РОЖДЕНИЯ, АРТЁМ! 🍰</h1>
         
         <div class="balloons">
-            <span class="balloon"></span>
-            <span class="balloon"></span>
-            <span class="balloon"></span>
-            <span class="balloon"></span>
-            <span class="balloon"></span>
+            <span class="balloon">🎈</span>
+            <span class="balloon">🎈</span>
+            <span class="balloon">🎈</span>
+            <span class="balloon">🎈</span>
+            <span class="balloon">🎈</span>
         </div>
 
         <!-- Музыкальный плеер -->
@@ -403,11 +404,11 @@
             <div class="music-controls">
                 <select id="musicSelect" class="music-select">
                     <option value="">МУЗОН ВЫБЕРИ АРТЕМКА</option>
-                    <option value="happy">🎧 nigger </option>
-                    <option value="hiphop">🎧 nigger </option>
-                    <option value="rock">🎧 nigger </option>
-                    <option value="disco">🎧 nigger </option>
-                    <option value="bachata">🎧 nigger </option>
+                    <option value="happy">🎧 nigger</option>
+                    <option value="hiphop">🎧 nigger</option>
+                    <option value="rock">🎧 nigger</option>
+                    <option value="disco">🎧 nigger</option>
+                    <option value="bachata">🎧 nigger</option>
                 </select>
                 
                 <button id="playBtn" class="music-btn" onclick="playMusic()">
@@ -423,8 +424,7 @@
                     <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="changeVolume()">
                 </div>
             </div>
-            <div style="font-size: 14px; color: #888; margin-top: 10px; text-align: center;"
-            </div>
+            <div style="font-size: 14px; color: #888; margin-top: 10px; text-align: center;"></div>
         </div>
         
         <div class="poem">
@@ -451,30 +451,30 @@
             <div id="question1" class="question-section">
                 <div class="question">Что Артём любит больше всего?</div>
                 <div class="options">
-                    <div class="option" onclick="selectOption(1, 'a')">🍔 Гамбургеры</div>
-                    <div class="option" onclick="selectOption(1, 'b')">🚗 Машины</div>
-                    <div class="option" onclick="selectOption(1, 'c')">💻 Компьютерные игры</div>
-                    <div class="option" onclick="selectOption(1, 'd')">😴 Спать до обеда</div>
+                    <div class="option" data-option="a" onclick="selectOption(1, 'a', event)">🍔 Гамбургеры</div>
+                    <div class="option" data-option="b" onclick="selectOption(1, 'b', event)">🚗 Машины</div>
+                    <div class="option" data-option="c" onclick="selectOption(1, 'c', event)">💻 Компьютерные игры</div>
+                    <div class="option" data-option="d" onclick="selectOption(1, 'd', event)">😴 Спать до обеда</div>
                 </div>
             </div>
             
             <div id="question2" class="question-section hidden">
                 <div class="question">Что пожелали Артёму в стихотворении?</div>
                 <div class="options">
-                    <div class="option" onclick="selectOption(2, 'a')">📚 Книжки и тетрадки</div>
-                    <div class="option" onclick="selectOption(2, 'b')">💰 Деньги и тачки</div>
-                    <div class="option" onclick="selectOption(2, 'c')">🍎 Яблоки и груши</div>
-                    <div class="option" onclick="selectOption(2, 'd')">🎭 Театр и балет</div>
+                    <div class="option" data-option="a" onclick="selectOption(2, 'a', event)">📚 Книжки и тетрадки</div>
+                    <div class="option" data-option="b" onclick="selectOption(2, 'b', event)">💰 Деньги и тачки</div>
+                    <div class="option" data-option="c" onclick="selectOption(2, 'c', event)">🍎 Яблоки и груши</div>
+                    <div class="option" data-option="d" onclick="selectOption(2, 'd', event)">🎭 Театр и балет</div>
                 </div>
             </div>
             
             <div id="question3" class="question-section hidden">
                 <div class="question">Какая машина была в стихе?</div>
                 <div class="options">
-                    <div class="option" onclick="selectOption(3, 'a')">🚗 Лада Калина</div>
-                    <div class="option" onclick="selectOption(3, 'b')">🏎️ Porsche</div>
-                    <div class="option" onclick="selectOption(3, 'c')">🚙 BMW</div>
-                    <div class="option" onclick="selectOption(3, 'd')">🚕 Mercedes</div>
+                    <div class="option" data-option="a" onclick="selectOption(3, 'a', event)">🚗 Лада Калина</div>
+                    <div class="option" data-option="b" onclick="selectOption(3, 'b', event)">🏎️ Porsche</div>
+                    <div class="option" data-option="c" onclick="selectOption(3, 'c', event)">🚙 BMW</div>
+                    <div class="option" data-option="d" onclick="selectOption(3, 'd', event)">🚕 Mercedes</div>
                 </div>
             </div>
             
@@ -514,9 +514,9 @@
         const musicUrls = {
             'happy': 'https://www.dropbox.com/scl/fi/r094selsndh7ojwalm1ca/Kodak-Black-Mumble-Rap-feat.-Pharrell-Williams.mp3?rlkey=p9zp5eujur646fr9nc5kmd6o0&st=vj7nogo1&dl=1',
             'hiphop': 'https://www.dropbox.com/scl/fi/ygzew836lqj2eotq63nhr/Drake_feat._Kyla_Wizkid_-_One_Dance_JM_Remix_Tik_Tok_Version_-SkySound.cc.mp3?rlkey=tdm2upnspr22gjqm3p39r1gvr&st=v8xudi6a&dl=1',
-    'rock': 'https://www.dropbox.com/scl/fi/l0jjc724hitt64riy83oh/Drake_-_God_s_Plan_Original_-SkySound.cc.mp3?rlkey=phtidqaknb7k750firh343zre&st=oangl5wt&dl=1',
-    'disco': 'https://www.dropbox.com/scl/fi/i3exlax4huc30ay0xad5w/50Cent_-_Many_Men_Wish_Death_-mp3.pm.mp3?rlkey=8e4bboh8ak1j4db0wublxm2d4&st=ajsuz6it&dl=1',
-    'bachata': 'https://www.dropbox.com/scl/fi/hbr6rtff9aruk7sgylcqr/Chief_Keef_feat._Lil_Reese_-_I_Don_t_Like_-SkySound.cc.mp3?rlkey=pqalt444we4o21lfc0utdvq6z&st=x4m44zou&dl=1'
+            'rock': 'https://www.dropbox.com/scl/fi/l0jjc724hitt64riy83oh/Drake_-_God_s_Plan_Original_-SkySound.cc.mp3?rlkey=phtidqaknb7k750firh343zre&st=oangl5wt&dl=1',
+            'disco': 'https://www.dropbox.com/scl/fi/i3exlax4huc30ay0xad5w/50Cent_-_Many_Men_Wish_Death_-mp3.pm.mp3?rlkey=8e4bboh8ak1j4db0wublxm2d4&st=ajsuz6it&dl=1',
+            'bachata': 'https://www.dropbox.com/scl/fi/hbr6rtff9aruk7sgylcqr/Chief_Keef_feat._Lil_Reese_-_I_Don_t_Like_-SkySound.cc.mp3?rlkey=pqalt444we4o21lfc0utdvq6z&st=x4m44zou&dl=1'
         };
 
         // Функция для выбора музыки
@@ -575,7 +575,7 @@
             3: 'b'  // Porsche
         };
         
-        function selectOption(questionNum, optionId) {
+        function selectOption(questionNum, optionId, event) {
             // Убираем выделение со всех опций этого вопроса
             const questionDiv = document.getElementById(`question${questionNum}`);
             const options = questionDiv.querySelectorAll('.option');
@@ -602,46 +602,31 @@
             // Проверяем правильность ответа на текущий вопрос
             const currentOptions = document.querySelectorAll(`#question${currentQuestion} .option`);
             let isCorrect = false;
+            let selectedOption = null;
             
+            // Находим выбранную опцию
             currentOptions.forEach(opt => {
                 if (opt.classList.contains('selected')) {
-                    const optionLetter = opt.textContent.includes('Гамбургеры') ? 'a' :
-                                         opt.textContent.includes('Машины') ? 'b' :
-                                         opt.textContent.includes('Компьютерные игры') ? 'c' :
-                                         opt.textContent.includes('Спать') ? 'd' :
-                                         opt.textContent.includes('Деньги и тачки') ? 'b' :
-                                         opt.textContent.includes('Книжки') ? 'a' :
-                                         opt.textContent.includes('Яблоки') ? 'c' :
-                                         opt.textContent.includes('Театр') ? 'd' :
-                                         opt.textContent.includes('Porsche') ? 'b' :
-                                         opt.textContent.includes('Лада') ? 'a' :
-                                         opt.textContent.includes('BMW') ? 'c' : 'd';
-                    
-                    if (optionLetter === correctAnswers[currentQuestion]) {
-                        isCorrect = true;
-                        opt.classList.add('correct');
-                    } else {
-                        opt.classList.add('wrong');
-                        // Показываем правильный ответ
-                        currentOptions.forEach(o => {
-                            const oLetter = o.textContent.includes('Гамбургеры') ? 'a' :
-                                           o.textContent.includes('Машины') ? 'b' :
-                                           o.textContent.includes('Компьютерные игры') ? 'c' :
-                                           o.textContent.includes('Спать') ? 'd' :
-                                           o.textContent.includes('Деньги и тачки') ? 'b' :
-                                           o.textContent.includes('Книжки') ? 'a' :
-                                           o.textContent.includes('Яблоки') ? 'c' :
-                                           o.textContent.includes('Театр') ? 'd' :
-                                           o.textContent.includes('Porsche') ? 'b' :
-                                           o.textContent.includes('Лада') ? 'a' :
-                                           o.textContent.includes('BMW') ? 'c' : 'd';
-                            if (oLetter === correctAnswers[currentQuestion]) {
-                                o.classList.add('correct');
-                            }
-                        });
-                    }
+                    selectedOption = opt;
                 }
             });
+            
+            if (selectedOption) {
+                const selectedValue = selectedOption.getAttribute('data-option');
+                
+                if (selectedValue === correctAnswers[currentQuestion]) {
+                    isCorrect = true;
+                    selectedOption.classList.add('correct');
+                } else {
+                    selectedOption.classList.add('wrong');
+                    // Показываем правильный ответ
+                    currentOptions.forEach(opt => {
+                        if (opt.getAttribute('data-option') === correctAnswers[currentQuestion]) {
+                            opt.classList.add('correct');
+                        }
+                    });
+                }
+            }
             
             if (!isCorrect) {
                 alert('НЕ НУ ТЫ ДАУН?');
