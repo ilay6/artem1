@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С днём рождения, Артём! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f6d5f7 0%, #fbe9d2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            border: 5px solid #ffb6c1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "🏎";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 150px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+        
+        .container::after {
+            content: "🏎";
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            font-size: 180px;
+            opacity: 0.1;
+            transform: rotate(10deg);
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            color: #ff69b4;
+            text-shadow: 3px 3px 0 #fff, 5px 5px 0 #ffa500;
+            margin-bottom: 20px;
+            position: relative;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .balloons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .balloon {
+            font-size: 50px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .balloon:nth-child(1) { animation-delay: 0s; }
+        .balloon:nth-child(2) { animation-delay: 0.3s; }
+        .balloon:nth-child(3) { animation-delay: 0.6s; }
+        .balloon:nth-child(4) { animation-delay: 0.9s; }
+        .balloon:nth-child(5) { animation-delay: 1.2s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* Панель управления музыкой */
+        .music-player {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+            border-radius: 60px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 3px solid #ffb6c1;
+            box-shadow: 0 10px 20px rgba(255,105,180,0.2);
+        }
+        
+        .music-title {
+            font-size: 20px;
+            color: #ff1493;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .music-title::before {
+            content: "🎧";
+            font-size: 24px;
+        }
+        
+        .music-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .music-select {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 40px;
+            border: 2px solid #ff69b4;
+            background: white;
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .music-select:hover {
+            border-color: #ff1493;
+            background: #fff0f5;
+        }
+        
+        .music-btn {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: 2px solid #ff1493;
+        }
+        
+        .music-btn:hover {
+            background: #ff1493;
+            transform: scale(1.05);
+        }
+        
+        .music-btn.stop {
+            background: #a9a9a9;
+            border-color: #808080;
+        }
+        
+        .music-btn.stop:hover {
+            background: #808080;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+        
+        .volume-control input {
+            width: 100px;
+            cursor: pointer;
+        }
+        
+        .volume-icon {
+            font-size: 20px;
+        }
+        
+        .poem {
+            background: #fff9e6;
+            padding: 25px;
+            border-radius: 40px;
+            margin: 25px 0;
+            border: 3px dashed #ffa500;
+            box-shadow: 0 10px 30px rgba(235, 229, 219, 0.2);
+            font-size: 18px;
+            line-height: 1.6;
+            color: #4a4a4a;
+            position: relative;
+        }
+        
+        .poem::before {
+            content: "📜";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 40px;
+            background: #fff9e6;
+            padding: 0 10px;
+        }
+        
+        .poem p {
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .poem .highlight {
+            font-weight: bold;
+            color: #ff4500;
+            font-size: 22px;
+            background: #ffebcd;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+        }
+        
+        .quest-title {
+            font-size: 32px;
+            color: #ff1493;
+            text-align: center;
+            margin: 30px 0 20px;
+            border-bottom: 3px solid #ffb6c1;
+            padding-bottom: 10px;
+        }
+        
+        .quest-box {
+            background: #e6f3ff;
+            border-radius: 40px;
+            padding: 25px;
+            border: 4px solid #87ceeb;
+        }
+        
+        .question {
+            font-size: 22px;
+            color: #1e90ff;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .option {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 60px;
+            border: 2px solid #add8e6;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .option:hover {
+            transform: scale(1.02);
+            background: #fff0f5;
+            border-color: #ff69b4;
+        }
+        
+        .option.selected {
+            background: #ffb6c1;
+            border-color: #ff1493;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .option.correct {
+            background: #90ee90;
+            border-color: #32cd32;
+        }
+        
+        .option.wrong {
+            background: #ffcccb;
+            border-color: #ff6347;
+        }
+        
+        .next-btn {
+            background: #32cd32;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 60px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s;
+            box-shadow: 0 5px 0 #228b22;
+        }
+        
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #228b22;
+        }
+        
+        .next-btn:disabled {
+            background: #d3d3d3;
+            box-shadow: 0 5px 0 #a9a9a9;
+            cursor: not-allowed;
+        }
+        
+        .prize {
+            text-align: center;
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(45deg, #fffacd, #f0e68c);
+            border-radius: 60px;
+            border: 5px solid #ffd700;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .prize h2 {
+            font-size: 36px;
+            color: #8b4513;
+            margin-bottom: 15px;
+        }
+        
+        .banana {
+            font-size: 80px;
+            filter: drop-shadow(0 10px 5px rgba(0,0,0,0.2));
+            animation: shake 0.5s infinite;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+        
+        .prize-text {
+            font-size: 24px;
+            color: #2e8b57;
+            font-weight: bold;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #d3d3d3;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff69b4, #ffa500);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #a9a9a9;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍰 С ДНЁМ РОЖДЕНИЯ, АРТЁМ! 🍰</h1>
+        
+        <div class="balloons">
+            <span class="balloon"></span>
+            <span class="balloon"></span>
+            <span class="balloon"></span>
+            <span class="balloon"></span>
+            <span class="balloon"></span>
+        </div>
+
+        <!-- Музыкальный плеер -->
+        <div class="music-player">
+            <div class="music-title">
+                Выберите музыку для праздника
+            </div>
+            <div class="music-controls">
+                <select id="musicSelect" class="music-select">
+                    <option value="">МУЗОН ВЫБЕРИ АРТЕМКА</option>
+                    <option value="happy">🎧 nigger </option>
+                    <option value="hiphop">🎧 nigger </option>
+                    <option value="rock">🎧 nigger </option>
+                    <option value="disco">🎧 nigger </option>
+                    <option value="bachata">🎧 nigger </option>
+                </select>
+                
+                <button id="playBtn" class="music-btn" onclick="playMusic()">
+                    <span>▶</span> Играть
+                </button>
+                
+                <button id="stopBtn" class="music-btn stop" onclick="stopMusic()">
+                    <span>⏹</span> Стоп
+                </button>
+                
+                <div class="volume-control">
+                    <span class="volume-icon">🎧</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="changeVolume()">
+                </div>
+            </div>
+            <div style="font-size: 14px; color: #888; margin-top: 10px; text-align: center;"
+            </div>
+        </div>
+        
+        <div class="poem">
+            <p><span class="highlight">Артём, наш дорогой!</span></p>
+            <p>С днём рождения поздравляем,<br>
+            И от всей души желаем:</p>
+            <p>💰 Денег — чтобы не считать,<br>
+            🏦 Чтоб карманы вырывались,<br>
+            🚗 Тачек — штук так двадцать пять,<br>
+            🏠 Чтоб хоромы раздувались!</p>
+            <p>🏎️ Чтоб на Porsche ты катался,<br>
+            ⛽ На заправках не считался,<br>
+            💎 Бриллиантами сверкал,<br>
+            🏖️ На Мальдивах отдыхал!</p>
+            <p>🎮 Чтобы в игры ты играл,<br>
+            👑 И во всех ты побеждал,<br>
+            🍔 Гамбургеры чтоб лопатой,<br>
+            😎 И счастливым был, ребята!</p>
+        </div>
+        
+        <h2 class="quest-title">пройди если не пройдешь лох</h2>
+        
+        <div class="quest-box" id="questBox">
+            <div id="question1" class="question-section">
+                <div class="question">Что Артём любит больше всего?</div>
+                <div class="options">
+                    <div class="option" onclick="selectOption(1, 'a')">🍔 Гамбургеры</div>
+                    <div class="option" onclick="selectOption(1, 'b')">🚗 Машины</div>
+                    <div class="option" onclick="selectOption(1, 'c')">💻 Компьютерные игры</div>
+                    <div class="option" onclick="selectOption(1, 'd')">😴 Спать до обеда</div>
+                </div>
+            </div>
+            
+            <div id="question2" class="question-section hidden">
+                <div class="question">Что пожелали Артёму в стихотворении?</div>
+                <div class="options">
+                    <div class="option" onclick="selectOption(2, 'a')">📚 Книжки и тетрадки</div>
+                    <div class="option" onclick="selectOption(2, 'b')">💰 Деньги и тачки</div>
+                    <div class="option" onclick="selectOption(2, 'c')">🍎 Яблоки и груши</div>
+                    <div class="option" onclick="selectOption(2, 'd')">🎭 Театр и балет</div>
+                </div>
+            </div>
+            
+            <div id="question3" class="question-section hidden">
+                <div class="question">Какая машина была в стихе?</div>
+                <div class="options">
+                    <div class="option" onclick="selectOption(3, 'a')">🚗 Лада Калина</div>
+                    <div class="option" onclick="selectOption(3, 'b')">🏎️ Porsche</div>
+                    <div class="option" onclick="selectOption(3, 'c')">🚙 BMW</div>
+                    <div class="option" onclick="selectOption(3, 'd')">🚕 Mercedes</div>
+                </div>
+            </div>
+            
+            <div class="progress">
+                <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+            </div>
+            
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()" disabled>➡️ Дальше</button>
+            
+            <div id="prizeSection" class="prize hidden">
+                <h2>🍌 ПОЗДРАВЛЯЮ 🍌</h2>
+                <div class="banana">🍌</div>
+                <div class="prize-text">Ты прошел квест и получаешь БАНАН!</div>
+                <div style="font-size: 18px; margin-top: 15px;">Съешь его и загадай желание! Оно обязательно сбудется! ✨</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            ❤️
+        </div>
+    </div>
+
+    <!-- Аудио элемент для музыки -->
+    <audio id="birthdayMusic" loop>
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Получаем элементы
+        const audio = document.getElementById('birthdayMusic');
+        const musicSelect = document.getElementById('musicSelect');
+        const playBtn = document.getElementById('playBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+
+        // Словарь с ссылками на музыку (вы можете заменить на свои)
+        const musicUrls = {
+            'happy': 'https://www.dropbox.com/scl/fi/r094selsndh7ojwalm1ca/Kodak-Black-Mumble-Rap-feat.-Pharrell-Williams.mp3?rlkey=p9zp5eujur646fr9nc5kmd6o0&st=vj7nogo1&dl=1',
+            'hiphop': 'https://www.dropbox.com/scl/fi/ygzew836lqj2eotq63nhr/Drake_feat._Kyla_Wizkid_-_One_Dance_JM_Remix_Tik_Tok_Version_-SkySound.cc.mp3?rlkey=tdm2upnspr22gjqm3p39r1gvr&st=v8xudi6a&dl=1',
+    'rock': 'https://www.dropbox.com/scl/fi/l0jjc724hitt64riy83oh/Drake_-_God_s_Plan_Original_-SkySound.cc.mp3?rlkey=phtidqaknb7k750firh343zre&st=oangl5wt&dl=1',
+    'disco': 'https://www.dropbox.com/scl/fi/i3exlax4huc30ay0xad5w/50Cent_-_Many_Men_Wish_Death_-mp3.pm.mp3?rlkey=8e4bboh8ak1j4db0wublxm2d4&st=ajsuz6it&dl=1',
+    'bachata': 'https://www.dropbox.com/scl/fi/hbr6rtff9aruk7sgylcqr/Chief_Keef_feat._Lil_Reese_-_I_Don_t_Like_-SkySound.cc.mp3?rlkey=pqalt444we4o21lfc0utdvq6z&st=x4m44zou&dl=1'
+        };
+
+        // Функция для выбора музыки
+        function playMusic() {
+            const selected = musicSelect.value;
+            
+            if (!selected) {
+                alert('МУЗИКА');
+                return;
+            }
+            
+            // Устанавливаем источник музыки
+            audio.src = musicUrls[selected];
+            
+            // Воспроизводим
+            audio.play()
+                .then(() => {
+                    playBtn.innerHTML = '<span>▶</span> Играет...';
+                    playBtn.style.background = '#32cd32';
+                })
+                .catch(error => {
+                    console.log('Ошибка воспроизведения:', error);
+                    alert('РЕПЛЕЙ');
+                });
+        }
+
+        // Функция остановки музыки
+        function stopMusic() {
+            audio.pause();
+            audio.currentTime = 0;
+            playBtn.innerHTML = '<span>▶</span> Играть';
+            playBtn.style.background = '#ff69b4';
+        }
+
+        // Функция изменения громкости
+        function changeVolume() {
+            audio.volume = volumeSlider.value / 100;
+        }
+
+        // Автоматически останавливаем при смене выбора
+        musicSelect.addEventListener('change', function() {
+            stopMusic();
+        });
+
+        // Переменные для квеста
+        let currentQuestion = 1;
+        let answers = {
+            1: '',
+            2: '',
+            3: ''
+        };
+        
+        const correctAnswers = {
+            1: 'b', // Машины
+            2: 'b', // Деньги и тачки
+            3: 'b'  // Porsche
+        };
+        
+        function selectOption(questionNum, optionId) {
+            // Убираем выделение со всех опций этого вопроса
+            const questionDiv = document.getElementById(`question${questionNum}`);
+            const options = questionDiv.querySelectorAll('.option');
+            
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'wrong');
+            });
+            
+            // Выделяем выбранную опцию
+            const selectedOption = event.currentTarget;
+            selectedOption.classList.add('selected');
+            
+            // Сохраняем ответ
+            answers[questionNum] = optionId;
+            
+            // Проверяем, все ли вопросы отвечены на текущем этапе
+            updateNextButton();
+            
+            // Обновляем прогресс
+            updateProgress();
+        }
+        
+        function nextQuestion() {
+            // Проверяем правильность ответа на текущий вопрос
+            const currentOptions = document.querySelectorAll(`#question${currentQuestion} .option`);
+            let isCorrect = false;
+            
+            currentOptions.forEach(opt => {
+                if (opt.classList.contains('selected')) {
+                    const optionLetter = opt.textContent.includes('Гамбургеры') ? 'a' :
+                                         opt.textContent.includes('Машины') ? 'b' :
+                                         opt.textContent.includes('Компьютерные игры') ? 'c' :
+                                         opt.textContent.includes('Спать') ? 'd' :
+                                         opt.textContent.includes('Деньги и тачки') ? 'b' :
+                                         opt.textContent.includes('Книжки') ? 'a' :
+                                         opt.textContent.includes('Яблоки') ? 'c' :
+                                         opt.textContent.includes('Театр') ? 'd' :
+                                         opt.textContent.includes('Porsche') ? 'b' :
+                                         opt.textContent.includes('Лада') ? 'a' :
+                                         opt.textContent.includes('BMW') ? 'c' : 'd';
+                    
+                    if (optionLetter === correctAnswers[currentQuestion]) {
+                        isCorrect = true;
+                        opt.classList.add('correct');
+                    } else {
+                        opt.classList.add('wrong');
+                        // Показываем правильный ответ
+                        currentOptions.forEach(o => {
+                            const oLetter = o.textContent.includes('Гамбургеры') ? 'a' :
+                                           o.textContent.includes('Машины') ? 'b' :
+                                           o.textContent.includes('Компьютерные игры') ? 'c' :
+                                           o.textContent.includes('Спать') ? 'd' :
+                                           o.textContent.includes('Деньги и тачки') ? 'b' :
+                                           o.textContent.includes('Книжки') ? 'a' :
+                                           o.textContent.includes('Яблоки') ? 'c' :
+                                           o.textContent.includes('Театр') ? 'd' :
+                                           o.textContent.includes('Porsche') ? 'b' :
+                                           o.textContent.includes('Лада') ? 'a' :
+                                           o.textContent.includes('BMW') ? 'c' : 'd';
+                            if (oLetter === correctAnswers[currentQuestion]) {
+                                o.classList.add('correct');
+                            }
+                        });
+                    }
+                }
+            });
+            
+            if (!isCorrect) {
+                alert('НЕ НУ ТЫ ДАУН?');
+                return;
+            }
+            
+            // Переходим к следующему вопросу или показываем приз
+            if (currentQuestion < 3) {
+                document.getElementById(`question${currentQuestion}`).classList.add('hidden');
+                currentQuestion++;
+                document.getElementById(`question${currentQuestion}`).classList.remove('hidden');
+                document.getElementById('nextBtn').disabled = true;
+            } else {
+                // Все вопросы пройдены, показываем приз
+                document.getElementById(`question3`).classList.add('hidden');
+                document.getElementById('questBox').querySelector('.progress').classList.add('hidden');
+                document.getElementById('nextBtn').classList.add('hidden');
+                document.getElementById('prizeSection').classList.remove('hidden');
+                
+                // Добавляем конфетти эффект
+                createConfetti();
+                
+                // Проигрываем победную мелодию (если выбрана музыка)
+                if (musicSelect.value) {
+                    playMusic();
+                }
+            }
+            
+            updateProgress();
+        }
+        
+        function updateNextButton() {
+            // Активируем кнопку если ответ на текущий вопрос выбран
+            const currentOptions = document.querySelectorAll(`#question${currentQuestion} .option`);
+            let hasSelection = false;
+            
+            currentOptions.forEach(opt => {
+                if (opt.classList.contains('selected')) {
+                    hasSelection = true;
+                }
+            });
+            
+            document.getElementById('nextBtn').disabled = !hasSelection;
+        }
+        
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            let answeredCount = 0;
+            
+            for (let i = 1; i <= 3; i++) {
+                if (answers[i] !== '') {
+                    const questionDiv = document.getElementById(`question${i}`);
+                    const options = questionDiv.querySelectorAll('.option');
+                    let isAnswered = false;
+                    
+                    options.forEach(opt => {
+                        if (opt.classList.contains('correct') || opt.classList.contains('selected')) {
+                            isAnswered = true;
+                        }
+                    });
+                    
+                    if (isAnswered) answeredCount++;
+                }
+            }
+            
+            const progressPercent = (answeredCount / 3) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        }
+        
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = ['🍌', '🍌', '🍌', '🍌', '🍌'][Math.floor(Math.random() * 5)];
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-50px';
+                    confetti.style.fontSize = (20 + Math.random() * 20) + 'px';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.animation = `float ${1 + Math.random() * 2}s ease-in forwards`;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 50);
+            }
+        }
+        
+        // Добавляем стиль для анимации конфетти
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
